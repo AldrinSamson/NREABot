@@ -127,15 +127,15 @@ const bot = new ViberBot(logger, {
 
 //Webhook
 const webhookURL = process.env.WEBHOOK_URL;
-const privateKey = fs.readFileSync('privkey.pem', 'utf8');
-const certificate = fs.readFileSync('cert.pem', 'utf8');
-const ca = fs.readFileSync('chain.pem', 'utf8');
+// const privateKey = fs.readFileSync('privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('cert.pem', 'utf8');
+// const ca = fs.readFileSync('chain.pem', 'utf8');
 
-const credentials = {
- 	key: privateKey,
-	cert: certificate,
-	ca: ca
-};
+// const credentials = {
+//  	key: privateKey,
+// 	cert: certificate,
+// 	ca: ca
+// };
 
 
 //variables
@@ -189,8 +189,8 @@ if (webhookURL) {
     const https = require('https');
     const port = process.env.PORT || 8080;
 
-    //http.createServer(bot.middleware()).listen(port, () => bot.setWebhook(webhookURL));
-    https.createServer(credentials, bot.middleware()).listen(port, () => bot.setWebhook(webhookURL));
+    http.createServer(bot.middleware()).listen(port, () => bot.setWebhook(webhookURL));
+    //https.createServer(credentials, bot.middleware()).listen(port, () => bot.setWebhook(webhookURL));
 } else {
     logger.debug('Could not find the now.sh/Heroku environment variables. Please make sure you followed readme guide.');
 }
