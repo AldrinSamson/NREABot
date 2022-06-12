@@ -432,23 +432,13 @@ function askUserType(response){
 		"Buttons": [{
 			"Columns": 3,
 			"Rows": 2,
-			"Text": "<font color=\"#494E67\"><b>I'm a PRC Licensed Broker or a Salesperson/Agent under a PRC Licensed Broker</b></font>",
+			"Text": "<font color=\"#494E67\"><b>I'm an NREA Member</b></font>",
 			"TextSize": "medium",
 			"TextHAlign": "center",
 			"TextVAlign": "middle",
 			"ActionType": "reply",
 			"ActionBody": "Broker/Agent",
 			"BgColor": "#edbf80",
-		}, {
-			"Columns": 3,
-			"Rows": 2,
-			"Text": "<font color=\"#494E67\"><b>I'm a Client</b></font>",
-			"TextSize": "medium",
-			"TextHAlign": "center",
-			"TextVAlign": "middle",
-			"ActionType": "reply",
-			"ActionBody": "no referral",
-			"BgColor": "#c7b0e6",
 		}
 		, {
 			"Columns": 6,
@@ -492,12 +482,12 @@ function askLicense(message, response){
 		}, {
 			"Columns": 3,
 			"Rows": 2,
-			"Text": "<font color=\"#494E67\"><b>No, I only have DHSUD accreditation and under provision of a PRC Licensed Broker.</b></font>",
+			"Text": "<font color=\"#494E67\"><b>No, I'm non-broker NREA member.</b></font>",
 			"TextSize": "medium",
 			"TextHAlign": "center",
 			"TextVAlign": "middle",
 			"ActionType": "reply",
-			"ActionBody": "No DHSUD",
+			"ActionBody": "Non NREA",
 			"BgColor": "#c7b0e6",
 		}
 		/*
@@ -7438,7 +7428,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 			response.send(new TextMessage(txt, startKb2,null,null,null,4),td);
 		}
 		else {
-			txt = `Woohoo! We will proceed with your registration as a Broker/Agent. `;
+			txt = `Woohoo! We will proceed with your registration as an NREA Member. `;
 			txt = txt + `Please type your name in <Last Name, First Name, MI> format. Example: Reyes, Jose, C`;
 			td.statusid = "nameRegistration";
 			response.send(new TextMessage(txt, startKb),td);
@@ -7491,7 +7481,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		if(isNaN(text) == false){
 			td.statusid = 'prcExpRegistration';
 			td.prcNumber = parseInt(text);
-			response.send(new TextMessage('Great! When does it expire? MM/DD/YYYY Example: 05/25/2021',startKb),td);
+			//response.send(new TextMessage('Great! When does it expire? MM/DD/YYYY Example: 05/25/2021',startKb),td);
 		} else {
 			response.send(new TextMessage(`You have input an invalid PRC number. Please try again.`,startKb),td)
 		}
@@ -7504,30 +7494,30 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 			response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
 		} else {
 			td.statusid = 'prcBoardAffiliation';
-			td.prcExp = text;
-			response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+			td.prcExp = '12/21/2099';
+			response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 		}
 	}
 
 	// separation of pareb boards using pages
 	else if(text && statusid == "prcBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' && text == "BOARD1"){
-		response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 	}
 
 	else if(text && statusid == "prcBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' && text == "BOARD2"){
-		response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 	}
 
 	else if(text && statusid == "prcBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' && text == "BOARD3"){
-		response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 	}
 
 	else if(text && statusid == "prcBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' && text == "BOARD4"){
-		response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 	}
 
 	else if(text && statusid == "prcBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' && text == "BOARD5"){
-		response.send(new TextMessage(`Are you affiliated with any organization &/ company? Ex. PAREB, REBAP, KW, REMAX? List all that applies. Type None if not affiliated with any.`, startKb),td);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 	}
 
 	//Upload image of PRC License (for Brokers with PRC)
@@ -7545,7 +7535,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		td.statusid = 'prcImageRegistration'; 
 		td.boardAffiliation = text;
 		// td.prcExp = text;
-		response.send(new TextMessage('Please upload an image of your PRC Real Estate Broker ID.',startKb),td);
+		response.send(new TextMessage('Please upload an image of your PRC Real Estate Broker ID or NREA Membership ID or any government.',startKb),td);
 	}
 
 	//REGISTRATION CONFIRMATION (for Brokers with PRC)
@@ -7569,17 +7559,17 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		//td.statusid = "reg-confirm";
 		//response.send(new TextMessage('Thank you for registering! We will contact you as soon as registration has been validated.', checkKb,null,null,null,4),td)	
 	}
-	//DHSUD Accreditation ID (for Brokers with DHSUD)
-	else if(text == "No DHSUD" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	//DHSUD Accreditation ID (for Brokers with DHSUD) (Non Nrea start)
+	else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		td.statusid = "hlurbNumberRegistration";
-		response.send(new TextMessage('Please input your DHSUD Accreditation Number. If not available, input company ID number or any valid government ID number.',startKb),td)	
+		//response.send(new TextMessage('Please input your DHSUD Accreditation Number. If not available, input company ID number or any valid government ID number.',startKb),td)	
 	}
 	//DHSUD Broker Confirm
-	else if(text && statusid == "hlurbNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	else if(statusid == "hlurbNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		
 		if(isNaN(text) == false){
 			td.statusid = "hlurbBrokerConfirmed";
-			td.hlurbNumber = parseInt(text);
+			td.hlurbNumber = 'NREA Member';
 			response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
 		} else {
 			response.send(new TextMessage('You have input an invalid DHSUD Accreditation ID. Please try again.',startKb),td);
@@ -7634,7 +7624,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 				if(query.length != 0){
 					td.statusid = "hlurbImageRegistration";
 					td.hlurbSupervisorLicense = parseInt(text);
-					response.send(new TextMessage(`Please send an Image of your DHSUD Accreditation ID/ Company ID/ Valid Government ID.`,startKb),td);
+					response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
 				} else {
 					response.send(new TextMessage(`I'm sorry. The PRC License Number you've sent us does not exist on our system. If you want to be a part of our group, please ask your supervisor to register as well. Thank you!`,startKb),td);
 				}		
