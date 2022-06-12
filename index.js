@@ -7476,27 +7476,38 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		td.statusid = "prcNumberRegistration";
 		response.send(new TextMessage('Please input your PRC license number. Example: 18888',startKb),td)	
 	}
-	//Date of expiration PRC (for Brokers with PRC)
+	// //Date of expiration PRC (for Brokers with PRC)
+	// else if(text && statusid == "prcNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// 	if(isNaN(text) == false){
+	// 		td.statusid = 'prcExpRegistration';
+	// 		td.prcNumber = parseInt(text);
+	// 		//response.send(new TextMessage('Great! When does it expire? MM/DD/YYYY Example: 05/25/2021',startKb),td);
+	// 	} else {
+	// 		response.send(new TextMessage(`You have input an invalid PRC number. Please try again.`,startKb),td)
+	// 	}
+			
+	// }
+
+	// // pareb boards 
+	// else if(text && statusid == "prcExpRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){		
+	// 	if(isValidDate(text) == false){
+	// 		response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
+	// 	} else {
+	// 		td.statusid = 'prcBoardAffiliation';
+	// 		td.prcExp = '12/21/2099';
+	// 		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
+	// 	}
+	// }
 	else if(text && statusid == "prcNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		if(isNaN(text) == false){
-			td.statusid = 'prcExpRegistration';
 			td.prcNumber = parseInt(text);
-			//response.send(new TextMessage('Great! When does it expire? MM/DD/YYYY Example: 05/25/2021',startKb),td);
+			td.statusid = 'prcBoardAffiliation';
+			td.prcExp = '12/21/2099';
+			response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
 		} else {
 			response.send(new TextMessage(`You have input an invalid PRC number. Please try again.`,startKb),td)
 		}
 			
-	}
-
-	// pareb boards 
-	else if(text && statusid == "prcExpRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){		
-		if(isValidDate(text) == false){
-			response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
-		} else {
-			td.statusid = 'prcBoardAffiliation';
-			td.prcExp = '12/21/2099';
-			response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
-		}
 	}
 
 	// separation of pareb boards using pages
@@ -7560,21 +7571,27 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		//response.send(new TextMessage('Thank you for registering! We will contact you as soon as registration has been validated.', checkKb,null,null,null,4),td)	
 	}
 	//DHSUD Accreditation ID (for Brokers with DHSUD) (Non Nrea start)
+	// else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// 	td.statusid = "hlurbNumberRegistration";
+	// 	response.send(td)	
+	// }
+	// //DHSUD Broker Confirm
+	// else if(statusid == "hlurbNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+		
+	// 	if(isNaN(text) == false){
+	// 		td.statusid = "hlurbBrokerConfirmed";
+	// 		td.hlurbNumber = 'NREA Member';
+	// 		response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
+	// 	} else {
+	// 		response.send(new TextMessage('You have input an invalid DHSUD Accreditation ID. Please try again.',startKb),td);
+	// 	}	
+		
+	// }
 	else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		td.statusid = "hlurbNumberRegistration";
-		response.send(td)	
-	}
-	//DHSUD Broker Confirm
-	else if(statusid == "hlurbNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		
-		if(isNaN(text) == false){
-			td.statusid = "hlurbBrokerConfirmed";
-			td.hlurbNumber = 'NREA Member';
-			response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
-		} else {
-			response.send(new TextMessage('You have input an invalid DHSUD Accreditation ID. Please try again.',startKb),td);
-		}	
-		
+		td.statusid = "hlurbBrokerConfirmed";
+		td.hlurbNumber = 'NREA Member';
+		response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
+
 	}
 	//DHSUD Accreditation ID Expiration(for Brokers with DHSUD)
 	// else if(text == "Continue" && statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){	
