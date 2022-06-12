@@ -430,7 +430,7 @@ function askUserType(response){
 		"Type": "keyboard",
 		"InputFieldState": "hidden",
 		"Buttons": [{
-			"Columns": 3,
+			"Columns": 6,
 			"Rows": 2,
 			"Text": "<font color=\"#494E67\"><b>I'm an NREA Member</b></font>",
 			"TextSize": "medium",
@@ -7661,7 +7661,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		const text2 = "Name: " + message.trackingData.nameReg + ",\n" +
 				"Contact Number: " + message.trackingData.mobileReg + ",\n" +
 				"Email: " + message.trackingData.emailReg + ",\n" +
-				"DHSUD Accreditation ID/ Company ID/ Valid Government ID: " + message.trackingData.hlurbNumber + ",\n" +
+				//"DHSUD Accreditation ID/ Company ID/ Valid Government ID: " + message.trackingData.hlurbNumber + ",\n" +
 				"Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
 				"Supervisor's License No.: " + message.trackingData.hlurbSupervisorLicense;
 		td.statusid = "hlurbConfirmation";
