@@ -7562,7 +7562,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	//DHSUD Accreditation ID (for Brokers with DHSUD) (Non Nrea start)
 	else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		td.statusid = "hlurbNumberRegistration";
-		//response.send(new TextMessage('Please input your DHSUD Accreditation Number. If not available, input company ID number or any valid government ID number.',startKb),td)	
+		response.send(td)	
 	}
 	//DHSUD Broker Confirm
 	else if(statusid == "hlurbNumberRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
