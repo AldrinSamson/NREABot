@@ -91,17 +91,17 @@ const airTableMatchingPayment = new AirTablePlus({
 	tableName: 'Proof of Payment',
 });
 
-const airTableRecommended = new AirTablePlus({
-	baseID: process.env.RECOMMENDED_MATCHING_BASE,
-	apiKey: process.env.RECOMMENDED_MATCHING_API_KEY,
-	tableName: 'Recommended Matches'
-})
+// const airTableRecommended = new AirTablePlus({
+// 	baseID: process.env.RECOMMENDED_MATCHING_BASE,
+// 	apiKey: process.env.RECOMMENDED_MATCHING_API_KEY,
+// 	tableName: 'Recommended Matches'
+// })
 
-const airTableExact = new AirTablePlus({
-	baseID: process.env.EXACT_MATCHING_BASE,
-	apiKey: process.env.RECOMMENDED_MATCHING_API_KEY,
-	tableName: 'Exact Matches'
-})
+// const airTableExact = new AirTablePlus({
+// 	baseID: process.env.EXACT_MATCHING_BASE,
+// 	apiKey: process.env.RECOMMENDED_MATCHING_API_KEY,
+// 	tableName: 'Exact Matches'
+// })
 
 
 //for email-verifier
@@ -455,7 +455,7 @@ function askUserType(response){
 	]
 	};
 	//To put the keyboard back, just replace the first null in the TextMessage() with the keyboard_referral variable 
-	const text = `Tell me which of the following applies to you`;
+	const text = `To verify yourself as a member please select the button`;
 	response.send(new TextMessage(text, keyboard_askUserType,null, null, null, 3),
 		{ 
 			statusid: "referral",
@@ -2844,7 +2844,8 @@ async function checkIfSubscribed(message,response,td){
 		matchesKb = {
 			"Type": "keyboard",
 			"InputFieldState": "hidden",
-			"Buttons": [{
+			"Buttons": [
+				{
 				"Columns": 3,
 				"Rows": 2,
 				"Text": "<font color=\"#494E67\"><b>Exact Matches</b></font>",
@@ -4236,20 +4237,21 @@ function mainAccountStart(message, response){
 					"ActionType": "reply",
 					"ActionBody": "Saved Search",
 					"BgColor": "#c7b0e6",
-				}, {
-					"Columns": 3,
-					"Rows": 1,
-					"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
-					"TextSize": "medium",
-					"TextHAlign": "center",
-					"TextVAlign": "middle",
-					"ActionType": "open-url",
-					"TextSize": "medium",
-					"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
-					"OpenURLType": "internal",
-					"Silent": "true",
-					"BgColor": "#edbf80",
 				}, 
+				// {
+				// 	"Columns": 3,
+				// 	"Rows": 1,
+				// 	"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
+				// 	"TextSize": "medium",
+				// 	"TextHAlign": "center",
+				// 	"TextVAlign": "middle",	
+				// 	"ActionType": "open-url",
+				// 	"TextSize": "medium",
+				// 	"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
+				// 	"OpenURLType": "internal",
+				// 	"Silent": "true",
+				// 	"BgColor": "#edbf80",
+				// }, 
 				// { 
 				// 	"Columns": 3,
 				// 	"Rows": 1,
@@ -4951,7 +4953,7 @@ function registrationBrokerPRC(message, response){
 				"Referral": message.trackingData.referral,
 				//"Share Referral": makeid(6),
 				"PRC Number": message.trackingData.prcNumber,
-				"PRC Expiration": message.trackingData.prcExp,
+				// "PRC Expiration": message.trackingData.prcExp,
 				"PRC Image": [{
 					"url" : message.trackingData.prcImage
 				}],
@@ -5790,8 +5792,8 @@ function deleteEntry(message){
 			
 			const rest = await airTableProperties.deleteWhere(`{Enlisting Code} = "${message.trackingData.enlistCode}"`);
 			// for deleting matches along with properties
-			const rest2 = await airTableExact.deleteWhere(`{Enlisting Code} = "${message.trackingData.enlistCode}"`);
-			const rest3 = await airTableRecommended.deleteWhere(`{Enlisting Code} = "${message.trackingData.enlistCode}"`);
+			//const rest2 = await airTableExact.deleteWhere(`{Enlisting Code} = "${message.trackingData.enlistCode}"`);
+			//const rest3 = await airTableRecommended.deleteWhere(`{Enlisting Code} = "${message.trackingData.enlistCode}"`);
 		} catch (e){
 			console.error(e)
 		}
@@ -5998,8 +6000,8 @@ function deleteSavedSearch(message){
 						
 			if(inquiryCodeArray[0].fields["Inquiry Code"]){
 				inquiryCode = inquiryCodeArray[0].fields["Inquiry Code"]
-				const rest2 = await airTableExact.deleteWhere(`{Inquiry Code} = "${inquiryCode}"`);
-				const rest3 = await airTableRecommended.deleteWhere(`{Inquiry Code} = "${inquiryCode}"`);
+				//const rest2 = await airTableExact.deleteWhere(`{Inquiry Code} = "${inquiryCode}"`);
+				//const rest3 = await airTableRecommended.deleteWhere(`{Inquiry Code} = "${inquiryCode}"`);
 			}
 
 			const rest = await airTableSearch.deleteWhere(`{Record ID} = "${message.trackingData.recordDelete}"`);
@@ -7556,8 +7558,8 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 					"Contact Number: " + message.trackingData.mobileReg + ",\n" +
 					"Email: " + message.trackingData.emailReg + ",\n" +
 					"PRC Number: " + message.trackingData.prcNumber + ",\n" +
-					"PRC Expiration Date: " + message.trackingData.prcExp + ",\n" + 
-					"Board &/ Company Affiliation: " + message.trackingData.boardAffiliation ;
+					// "PRC Expiration Date: " + message.trackingData.prcExp + ",\n" + 
+					"Chapter Affiliation: " + message.trackingData.boardAffiliation ;
 		td.statusid = "prcConfirmation";
 		td.prcImage = message.url;
 		td.subGroup = "PRC";
@@ -7567,7 +7569,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	//END REGISTRATION (for Brokers with PRC)
 	else if(text == "Proceed" && statusid == "prcConfirmation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		registrationBrokerPRC(message,response);
-		//td.statusid = "reg-confirm";
+		td.statusid = "reg-confirm";
 		//response.send(new TextMessage('Thank you for registering! We will contact you as soon as registration has been validated.', checkKb,null,null,null,4),td)	
 	}
 	//DHSUD Accreditation ID (for Brokers with DHSUD) (Non Nrea start)
@@ -10721,9 +10723,9 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		checkIfSubscribed(message,response,td)
 	}
 
-	else if(text && text == "Exact Matches" && userid == response.userProfile.id && statusid == "selectMatches"){
-		getExactMatches(message,response,td)		
-	}
+	// else if(text && text == "Exact Matches" && userid == response.userProfile.id && statusid == "selectMatches"){
+	// 	getExactMatches(message,response,td)		
+	// }
 
 	else if(text && text == "Recommended Matches" && userid == response.userProfile.id && statusid == "selectMatches"){
 		getRecommendedMatches(message,response,td)		
