@@ -3827,17 +3827,18 @@ const account2Kb ={
 	// 	"ActionBody": "My Subscription",
 	// 	"BgColor": "#edbf80",
 	// },
-	 {
-		"Columns": 3,
-		"Rows": 1,
-		"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
-		"TextSize": "medium",
-		"TextHAlign": "center",
-		"TextVAlign": "middle",
-		"ActionType": "reply",
-		"ActionBody": "Salesperson",
-		"BgColor": "#edbf80",
-	}, {
+	//  {
+	// 	"Columns": 3,
+	// 	"Rows": 1,
+	// 	"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
+	// 	"TextSize": "medium",
+	// 	"TextHAlign": "center",
+	// 	"TextVAlign": "middle",
+	// 	"ActionType": "reply",
+	// 	"ActionBody": "Salesperson",
+	// 	"BgColor": "#edbf80",
+	// }, 
+	{
 		"Columns": 3,
 		"Rows": 1,
 		"Text": "<font color=\"#494E67\"><b>Register Again</b></font>",
@@ -3953,17 +3954,18 @@ const account3Kb ={
 	// 	"ActionBody": "My Subscription",
 	// 	"BgColor": "#edbf80",
 	// }, 
-	{
-		"Columns": 3,
-		"Rows": 1,
-		"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
-		"TextSize": "medium",
-		"TextHAlign": "center",
-		"TextVAlign": "middle",
-		"ActionType": "reply",
-		"ActionBody": "Salesperson",
-		"BgColor": "#edbf80",
-	}, {
+	// {
+	// 	"Columns": 3,
+	// 	"Rows": 1,
+	// 	"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
+	// 	"TextSize": "medium",
+	// 	"TextHAlign": "center",
+	// 	"TextVAlign": "middle",
+	// 	"ActionType": "reply",
+	// 	"ActionBody": "Salesperson",
+	// 	"BgColor": "#edbf80",
+	// },
+	 {
 		"Columns": 3,
 		"Rows": 1,
 		"Text": "<font color=\"#494E67\"><b>Register Again</b></font>",
@@ -4273,17 +4275,17 @@ function mainAccountStart(message, response){
 				// 	"ActionBody": "My Subscription",
 				// 	"BgColor": "#c7b0e6",
 				// }, 
-				{
-					"Columns": 3,
-					"Rows": 1,
-					"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
-					"TextSize": "medium",
-					"TextHAlign": "center",
-					"TextVAlign": "middle",
-					"ActionType": "reply",
-					"ActionBody": "Salesperson",
-					"BgColor": "#c7b0e6",
-				},
+				// {
+				// 	"Columns": 3,
+				// 	"Rows": 1,
+				// 	"Text": "<font color=\"#494E67\"><b>My Salespersons</b></font>",
+				// 	"TextSize": "medium",
+				// 	"TextHAlign": "center",
+				// 	"TextVAlign": "middle",
+				// 	"ActionType": "reply",
+				// 	"ActionBody": "Salesperson",
+				// 	"BgColor": "#c7b0e6",
+				// },
 /*				 {
 					"Columns": 3,
 					"Rows": 1,
@@ -4442,17 +4444,17 @@ function mainAccountStart(message, response){
 				// 	"ActionBody": "My Subscription",
 				// 	"BgColor": "#c7b0e6",
 				// },
-				 {
-					"Columns": 3,
-					"Rows": 1,
-					"Text": "<font color=\"#494E67\"><b>My Salesperson</b></font>",
-					"TextSize": "medium",
-					"TextHAlign": "center",
-					"TextVAlign": "middle",
-					"ActionType": "reply",
-					"ActionBody": "Salesperson",
-					"BgColor": "#c7b0e6",
-				},
+				//  {
+				// 	"Columns": 3,
+				// 	"Rows": 1,
+				// 	"Text": "<font color=\"#494E67\"><b>My Salesperson</b></font>",
+				// 	"TextSize": "medium",
+				// 	"TextHAlign": "center",
+				// 	"TextVAlign": "middle",
+				// 	"ActionType": "reply",
+				// 	"ActionBody": "Salesperson",
+				// 	"BgColor": "#c7b0e6",
+				// },
 /*				 {
 					"Columns": 3,
 					"Rows": 1,
@@ -4992,36 +4994,36 @@ function registrationBrokerHLURB(message,response){
 	(async () => {
 		
 		try {
-			const readRes = await airTablePRC.read({
-				filterByFormula:`{PRC Number} = "${message.trackingData.hlurbSupervisorLicense}"`
-			});		
-			//console.log(readRes + "\n\n\n\n\n\n\n");		
-			if (readRes.length == 0) {
+			// const readRes = await airTablePRC.read({
+			// 	filterByFormula:`{PRC Number} = "${message.trackingData.hlurbSupervisorLicense}"`
+			// });		
+			// //console.log(readRes + "\n\n\n\n\n\n\n");		
+			// if (readRes.length == 0) {
 				
-				const txt_sorry = "Sorry, looks like your supervising broker hasn't registered yet. Tell your broker about this awesome group. Thank you for your interest!";
-				const sorryKb = {
-					"Type": "keyboard",
-					"InputFieldState": "hidden",
-					"Buttons": [{
-						"Text": "<b><font color=\"#000000\">Go back</font></b>",
-						"ActionType": "reply",
-						"ActionBody": "CANCEL1",
-						"BgColor": "#FFAA88",
-						"TextOpacity": 100,
-						"Rows": 1,
-						"Columns": 6
-					}]
-				};
-				response.send(new TextMessage(txt_sorry, sorryKb ,null,null,null,3),{
-					statusid: "registration",
-					userid: response.userProfile.id,
-					groupType: message.trackingData.groupType,
-					subGroup: message.trackingData.subGroup
-				});
-			}
+			// 	const txt_sorry = "Sorry, looks like your supervising broker hasn't registered yet. Tell your broker about this awesome group. Thank you for your interest!";
+			// 	const sorryKb = {
+			// 		"Type": "keyboard",
+			// 		"InputFieldState": "hidden",
+			// 		"Buttons": [{
+			// 			"Text": "<b><font color=\"#000000\">Go back</font></b>",
+			// 			"ActionType": "reply",
+			// 			"ActionBody": "CANCEL1",
+			// 			"BgColor": "#FFAA88",
+			// 			"TextOpacity": 100,
+			// 			"Rows": 1,
+			// 			"Columns": 6
+			// 		}]
+			// 	};
+			// 	response.send(new TextMessage(txt_sorry, sorryKb ,null,null,null,3),{
+			// 		statusid: "registration",
+			// 		userid: response.userProfile.id,
+			// 		groupType: message.trackingData.groupType,
+			// 		subGroup: message.trackingData.subGroup
+			// 	});
+			// }
 				
-			else {
-				const txt_confirm = "We will contact you as soon as we confirm your registration with your supervising broker.";
+			// else {
+				const txt_confirm = "We will contact you as soon as we confirm your registration with the Admin.";
 				
 	
 				base('Brokers (HLURB)').create([
@@ -5064,30 +5066,30 @@ function registrationBrokerHLURB(message,response){
 				});
 
 				
-				let broker = {};
-				broker.id = readRes[0].fields["Viber ID"];
-				broker.name = readRes[0].fields["Name"];
-				const confirm_txt = new TextMessage(`Someone wishes to register as your salesperson.\n` +
-				`Name: ${message.trackingData.nameReg}\n` +
-				`Mobile: ${message.trackingData.mobileReg}\n` +
-				`Email: ${message.trackingData.emailReg}\n` +
-				`HLURB DHSUD Accreditation ID/ Company ID/ Valid Government ID: ${message.trackingData.hlurbNumber}\n` +
-				`Here is the submitted DHSUD Accreditation ID/ Company ID/ Valid Government ID.\n`);
-				const confirm_id = new PictureMessage(message.trackingData.hlurbImage);
-				const confirm_txt2 = new TextMessage(`Please only authorize him/her when you have full direct supervision and accountability of him/her as defined in RESA Law R.A. 9646 Section 31. You can confirm his/her status by following Main Menu-> My Account->My Salespersons.`,cancel2Kb,null,null,null,3);
-				const msgArray = [confirm_txt, confirm_id, confirm_txt2];
-				console.log(broker.id);
-				console.log(track[broker.id]+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-				bot.sendMessage(broker, msgArray,{
-					userid : readRes[0].fields["Viber ID"],
-					groupType : "Broker",
-					subGroup : "PRC"
-				});
+				// let broker = {};
+				// broker.id = readRes[0].fields["Viber ID"];
+				// broker.name = readRes[0].fields["Name"];
+				// const confirm_txt = new TextMessage(`Someone wishes to register as your salesperson.\n` +
+				// `Name: ${message.trackingData.nameReg}\n` +
+				// `Mobile: ${message.trackingData.mobileReg}\n` +
+				// `Email: ${message.trackingData.emailReg}\n` +
+				// `HLURB DHSUD Accreditation ID/ Company ID/ Valid Government ID: ${message.trackingData.hlurbNumber}\n` +
+				// `Here is the submitted DHSUD Accreditation ID/ Company ID/ Valid Government ID.\n`);
+				// const confirm_id = new PictureMessage(message.trackingData.hlurbImage);
+				// const confirm_txt2 = new TextMessage(`Please only authorize him/her when you have full direct supervision and accountability of him/her as defined in RESA Law R.A. 9646 Section 31. You can confirm his/her status by following Main Menu-> My Account->My Salespersons.`,cancel2Kb,null,null,null,3);
+				// const msgArray = [confirm_txt, confirm_id, confirm_txt2];
+				// console.log(broker.id);
+				// console.log(track[broker.id]+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				// bot.sendMessage(broker, msgArray,{
+				// 	userid : readRes[0].fields["Viber ID"],
+				// 	groupType : "Broker",
+				// 	subGroup : "PRC"
+				// });
 				
 
 
 				
-			}
+			//}
 			
 				
 		} catch (e){
@@ -7606,34 +7608,35 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// 	}	
 	// }
 	//DHSUD Accreditation Supervisor(for Brokers with DHSUD)
-	else if(statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		let check = isValidDate('12/31/2021')
-		if( check == false){
-			response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
-		} else {
-			td.statusid = "hlurbSupervisorRegistration";
-			td.hlurbExp = text;
-			response.send(new TextMessage('Who is your supervising registered broker? Please type his name in <Last Name, First Name, MI> format.',startKb),td);
-		}	
-	}
-	//DHSUD Accreditation Supervisor's PRC License(for Brokers with DHSUD)
-	else if(text && statusid == "hlurbSupervisorRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		if(text.includes(",")){
-			let nameSplit = text.split(",");
-			console.log(nameSplit.length);
-			if(nameSplit[0].length > 1 && nameSplit[1].length > 1 && nameSplit.length == 3 ){
-				td.statusid = "hlurbSupervisorLicenseRegistration";
-				td.hlurbSupervisor = nameSplit[0].trim() + ", " + nameSplit[1].trim() + " " + nameSplit[2].trim();
-				response.send(new TextMessage(`Please input your supervising broker's PRC license number.`,startKb),td);
-			} else {
-				response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)	
-			}
-		} else {
-			response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)
-		}
-	}
+	// else if(statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// 	let check = isValidDate('12/31/2021')
+	// 	if( check == false){
+	// 		response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
+	// 	} else {
+	// 		td.statusid = "hlurbSupervisorRegistration";
+	// 		td.hlurbExp = text;
+	// 		response.send(new TextMessage('Who is your supervising registered broker? Please type his name in <Last Name, First Name, MI> format.',startKb),td);
+	// 	}	
+	// }
+	// //DHSUD Accreditation Supervisor's PRC License(for Brokers with DHSUD)
+	// else if(text && statusid == "hlurbSupervisorRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// 	if(text.includes(",")){
+	// 		let nameSplit = text.split(",");
+	// 		console.log(nameSplit.length);
+	// 		if(nameSplit[0].length > 1 && nameSplit[1].length > 1 && nameSplit.length == 3 ){
+	// 			td.statusid = "hlurbSupervisorLicenseRegistration";
+	// 			td.hlurbSupervisor = nameSplit[0].trim() + ", " + nameSplit[1].trim() + " " + nameSplit[2].trim();
+	// 			response.send(new TextMessage(`Please input your supervising broker's PRC license number.`,startKb),td);
+	// 		} else {
+	// 			response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)	
+	// 		}
+	// 	} else {
+	// 		response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)
+	// 	}
+	// }
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
-	else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	//else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	else if(text && statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		if(isNaN(text) == false){
 			(async() => {
 			try {
@@ -7662,10 +7665,10 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	else if(message.url && statusid == "hlurbImageRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		const text2 = "Name: " + message.trackingData.nameReg + ",\n" +
 				"Contact Number: " + message.trackingData.mobileReg + ",\n" +
-				"Email: " + message.trackingData.emailReg + ",\n" +
+				"Email: " + message.trackingData.emailReg + ",\n" ;
 				//"DHSUD Accreditation ID/ Company ID/ Valid Government ID: " + message.trackingData.hlurbNumber + ",\n" +
-				"Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
-				"Supervisor's License No.: " + message.trackingData.hlurbSupervisorLicense;
+				// "Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
+				// "Supervisor's License No.: " + message.trackingData.hlurbSupervisorLicense;
 		td.statusid = "hlurbConfirmation";
 		td.hlurbImage = message.url;
 		td.subGroup = "HLURB";
