@@ -7637,29 +7637,36 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
 	//else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 	else if(text && statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		if(isNaN(text) == false){
-			(async() => {
-			try {
-				const query = await airTablePRC.read({
-					filterByFormula: `{PRC Number} = "${text}"`
-				});
-				if(query.length != 0){
-					td.statusid = "hlurbImageRegistration";
-					td.hlurbSupervisorLicense = parseInt(text);
-					response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
-				} else {
-					response.send(new TextMessage(`I'm sorry. The PRC License Number you've sent us does not exist on our system. If you want to be a part of our group, please ask your supervisor to register as well. Thank you!`,startKb),td);
-				}		
-			} catch(e){
-				console.error(e);
-			}
-		})();
+		// if(isNaN(text) == false){
+		// 	(async() => {
+		// 	try {
+		// 		const query = await airTablePRC.read({
+		// 			filterByFormula: `{PRC Number} = "${text}"`
+		// 		});
+		// 		if(query.length != 0){
 
+		// 			td.statusid = "hlurbImageRegistration";
+		// td.hlurbSupervisorLicense = parseInt(text);
+		// response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
+	
+		// 					} else {
+		// 			response.send(new TextMessage(`I'm sorry. The PRC License Number you've sent us does not exist on our system. If you want to be a part of our group, please ask your supervisor to register as well. Thank you!`,startKb),td);
+		// 		}		
+		// 	} catch(e){
+		// 		console.error(e);
+		// 	}
+		// })();
 
+		
 			
-		} else {
-			response.send(new TextMessage(`You have input an invalid PRC License Number. Please try again.`,startKb),td);
-		}	
+		// } else {
+		// 	response.send(new TextMessage(`You have input an invalid PRC License Number. Please try again.`,startKb),td);
+		// }	
+
+		td.statusid = "hlurbImageRegistration";
+		td.hlurbSupervisorLicense = parseInt(text);
+		response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
+		
 	}
 	//CONFIRMATION REGISTRATION (for Brokers with DHSUD Accreditation ID)
 	else if(message.url && statusid == "hlurbImageRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
