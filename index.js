@@ -4409,20 +4409,21 @@ function mainAccountStart(message, response){
 					"ActionType": "reply",
 					"ActionBody": "Saved Search",
 					"BgColor": "#c7b0e6",
-				}, {
-					"Columns": 3,
-					"Rows": 1,
-					"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
-					"TextSize": "medium",
-					"TextHAlign": "center",
-					"TextVAlign": "middle",
-					"ActionType": "open-url",
-					"TextSize": "medium",
-					"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
-					"OpenURLType": "internal",
-					"Silent": "true",
-					"BgColor": "#edbf80",
-				},
+				}, 
+				// {
+				// 	"Columns": 3,
+				// 	"Rows": 1,
+				// 	"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
+				// 	"TextSize": "medium",
+				// 	"TextHAlign": "center",
+				// 	"TextVAlign": "middle",
+				// 	"ActionType": "open-url",
+				// 	"TextSize": "medium",
+				// 	"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
+				// 	"OpenURLType": "internal",
+				// 	"Silent": "true",
+				// 	"BgColor": "#edbf80",
+				// },
 				//  { 
 				// 	"Columns": 3,
 				// 	"Rows": 1,
@@ -4589,20 +4590,21 @@ function mainAccountStart(message, response){
 					"ActionType": "reply",
 					"ActionBody": "Saved Search",
 					"BgColor": "#c7b0e6",
-				}, {
-					"Columns": 3,
-					"Rows": 1,
-					"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
-					"TextSize": "medium",
-					"TextHAlign": "center",
-					"TextVAlign": "middle",
-					"ActionType": "open-url",
-					"TextSize": "medium",
-					"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
-					"OpenURLType": "internal",
-					"Silent": "true",
-					"BgColor": "#edbf80",
 				}, 
+				// {
+				// 	"Columns": 3,
+				// 	"Rows": 1,
+				// 	"Text": "<font color=\"#494E67\"><b>Project Selling</b></font>",
+				// 	"TextSize": "medium",
+				// 	"TextHAlign": "center",
+				// 	"TextVAlign": "middle",
+				// 	"ActionType": "open-url",
+				// 	"TextSize": "medium",
+				// 	"ActionBody": "https://airtable.com/shrvbXe6mbNsIRC9b",
+				// 	"OpenURLType": "internal",
+				// 	"Silent": "true",
+				// 	"BgColor": "#edbf80",
+				// }, 
 				// { 
 				// 	"Columns": 3,
 				// 	"Rows": 1,
@@ -7334,7 +7336,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 				if(td.subGroup == "PRC"){
 					group = "PRC Licensed Broker";
 				} else if(td.subGroup == "HLURB"){
-					group = "HLURB/PRC Accredited Broker";	
+					group = "NREA Member";	
 				} else if(td.subGroup == "Client"){
 					group = "Client";
 				} else{
@@ -7591,12 +7593,12 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// 	}	
 		
 	// }
-	else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-		td.statusid = "hlurbBrokerConfirmed";
-		td.hlurbNumber = 'NREA Member';
-		response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
+	// else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// 	td.statusid = "hlurbBrokerConfirmed";
+	// 	td.hlurbNumber = 'NREA Member';
+	// 	response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
 
-	}
+	// }
 	//DHSUD Accreditation ID Expiration(for Brokers with DHSUD)
 	// else if(text == "Continue" && statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){	
 	// 	if(isNaN(text) == false){
@@ -7636,7 +7638,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// }
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
 	//else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-	else if(text && statusid == "hlurbBrokerConfirmed" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	else if(text && statusid == "Non NREA" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		// if(isNaN(text) == false){
 		// 	(async() => {
 		// 	try {
@@ -7662,7 +7664,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		// } else {
 		// 	response.send(new TextMessage(`You have input an invalid PRC License Number. Please try again.`,startKb),td);
 		// }	
-
+		td.hlurbNumber = 'NREA Member';
 		td.statusid = "hlurbImageRegistration";
 		td.hlurbSupervisorLicense = parseInt(text);
 		response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
