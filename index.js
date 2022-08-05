@@ -7638,7 +7638,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// }
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
 	//else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-	else if(text && statusid == "NonNREA" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	else if(text == "NonNREA" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		// if(isNaN(text) == false){
 		// 	(async() => {
 		// 	try {
