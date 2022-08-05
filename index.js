@@ -487,7 +487,7 @@ function askLicense(message, response){
 			"TextHAlign": "center",
 			"TextVAlign": "middle",
 			"ActionType": "reply",
-			"ActionBody": "Non NREA",
+			"ActionBody": "NonNREA",
 			"BgColor": "#c7b0e6",
 		}
 		/*
@@ -7576,8 +7576,8 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		td.statusid = "reg-confirm";
 		//response.send(new TextMessage('Thank you for registering! We will contact you as soon as registration has been validated.', checkKb,null,null,null,4),td)	
 	}
-	//DHSUD Accreditation ID (for Brokers with DHSUD) (Non Nrea start)
-	// else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	//DHSUD Accreditation ID (for Brokers with DHSUD) (NonNREA start)
+	// else if(text == "NonNREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 	// 	td.statusid = "hlurbNumberRegistration";
 	// 	response.send(td)	
 	// }
@@ -7593,7 +7593,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// 	}	
 		
 	// }
-	// else if(text == "Non NREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	// else if(text == "NonNREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 	// 	td.statusid = "hlurbBrokerConfirmed";
 	// 	td.hlurbNumber = 'NREA Member';
 	// 	response.send(new TextMessage('Please continue if your broker has confirmed to have registered to '+botName+' Bot. Do not proceed if your broker hasn’t registered to '+botName+' Bot.',continueKb),td);
@@ -7638,7 +7638,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// }
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
 	//else if(text && statusid == "hlurbSupervisorLicenseRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
-	else if(text && statusid == "Non NREA" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
+	else if(text && statusid == "NonNREA" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		// if(isNaN(text) == false){
 		// 	(async() => {
 		// 	try {
