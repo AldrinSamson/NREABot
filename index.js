@@ -5038,6 +5038,7 @@ function registrationBrokerHLURB(message,response){
 							"Referral": message.trackingData.referral,
 							//"Share Referral": makeid(6),
 							"HLURB/PRC": message.trackingData.hlurbNumber,
+							"Board Affiliation": message.trackingData.boardAffiliation,
 							//"HLURB/PRC Expiration": message.trackingData.hlurbExp,
 							"Supervisor": message.trackingData.hlurbSupervisor,
 							"Supervisor PRC": message.trackingData.hlurbSupervisorLicense,
@@ -7576,6 +7577,8 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		td.statusid = "reg-confirm";
 		//response.send(new TextMessage('Thank you for registering! We will contact you as soon as registration has been validated.', checkKb,null,null,null,4),td)	
 	}
+
+	
 	//DHSUD Accreditation ID (for Brokers with DHSUD) (NonNREA start)
 	// else if(text == "NonNREA" && statusid == "askLicense" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 	// 	td.statusid = "hlurbNumberRegistration";
@@ -7665,19 +7668,35 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		// 	response.send(new TextMessage(`You have input an invalid PRC License Number. Please try again.`,startKb),td);
 		// }	
 		td.hlurbNumber = 'NREA Member';
-		td.statusid = "hlurbImageRegistration";
+		td.statusid = "hlurbBoardAffiliation";
 		td.hlurbSupervisorLicense = parseInt(text);
+		response.send(new TextMessage(`Which chapter are you affiliated with?`, startKb),td);
+	}
+
+	else if(text && statusid == "hlurbBoardAffiliation" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker' 
+		&& (text != "BOARD1" && text != "BOARD2" && text != "BOARD3" && text != "BOARD4" && text != "BOARD5")){
+		// if(isValidDate(text) == false){
+		// 	response.send(new TextMessage('Uh oh, you have inputted an invalid date. Please try again in MM/DD/YYYY format. Example: 05/25/2021.',startKb),td);
+		// } else {
+		// 	td.statusid = 'prcImageRegistration'; 
+		// 	td.prcExp = text;
+		// 	response.send(new TextMessage('Please upload an image of your PRC Real Estate Broker ID.',startKb),td);
+		// }
+		// console.log("textsdadasd " + text)
+		td.statusid = 'hlurbImageRegistration'; 
+		td.boardAffiliation = text;
+		// td.prcExp = text;
 		response.send(new TextMessage(`Please upload an image of your PRC Real Estate Broker ID (for brokers) or government ID (for non-broker NREA member).`,startKb),td);
-		
 	}
 	//CONFIRMATION REGISTRATION (for Brokers with DHSUD Accreditation ID)
 	else if(message.url && statusid == "hlurbImageRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		const text2 = "Name: " + message.trackingData.nameReg + ",\n" +
 				"Contact Number: " + message.trackingData.mobileReg + ",\n" +
-				"Email: " + message.trackingData.emailReg + ",\n" ;
+				"Email: " + message.trackingData.emailReg + ",\n" 
+				"Chapter Affiliation: " + message.trackingData.boardAffiliation ;
 				//"DHSUD Accreditation ID/ Company ID/ Valid Government ID: " + message.trackingData.hlurbNumber + ",\n" +
-				// "Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
-				// "Supervisor's License No.: " + message.trackingData.hlurbSupervisorLicense;
+				//"Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
+				//"Supervisor's License No.: " + message.trackingData.hlurbSupervisorLicense;
 		td.statusid = "hlurbConfirmation";
 		td.hlurbImage = message.url;
 		td.subGroup = "HLURB";
