@@ -3893,7 +3893,7 @@ const account2Kb ={
 		"TextVAlign": "middle",
 		"ActionType": "reply",
 		"ActionBody": "Broadcast Preference",
-		"BgColor": "#c7b0e6",
+		"BgColor": "#edbf80",
 	}, {
 		"Columns": 3,
 		"Rows": 1,
@@ -4042,7 +4042,7 @@ const account3Kb ={
 		"TextVAlign": "middle",
 		"ActionType": "reply",
 		"ActionBody": "Broadcast Preference",
-		"BgColor": "#c7b0e6",
+		"BgColor": "#edbf80",
 	}, {
 		"Columns": 3,
 		"Rows": 1,
@@ -4635,7 +4635,7 @@ function mainAccountStart(message, response){
 					"TextVAlign": "middle",
 					"ActionType": "reply",
 					"ActionBody": "Broadcast Preference",
-					"BgColor": "#c7b0e6",
+					"BgColor": "#edbf80",
 				},
 				//  { 
 				// 	"Columns": 3,
