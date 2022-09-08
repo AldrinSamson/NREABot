@@ -7692,7 +7692,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	else if(message.url && statusid == "hlurbImageRegistration" && userid == response.userProfile.id && message.trackingData.groupType == 'Broker'){
 		const text2 = "Name: " + message.trackingData.nameReg + ",\n" +
 				"Contact Number: " + message.trackingData.mobileReg + ",\n" +
-				"Email: " + message.trackingData.emailReg + ",\n" 
+				"Email: " + message.trackingData.emailReg + ",\n" +
 				"Chapter Affiliation: " + message.trackingData.boardAffiliation ;
 				//"DHSUD Accreditation ID/ Company ID/ Valid Government ID: " + message.trackingData.hlurbNumber + ",\n" +
 				//"Supervisor: " + message.trackingData.hlurbSupervisor + ",\n" +
