@@ -7404,7 +7404,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		td.referral = text;
 		td.groupType = "Client";
 		
-		let txt = `Please type your name in <Last Name, First Name, MI> format. Example: Reyes, Jose, C`;
+		let txt = `Please type your name in <Last Name, First Name> format. Example: Reyes, Jose`;
 		
 		td.statusid = "nameRegistration";
 		response.send(new TextMessage(`You will now be registered as a Client. \n` + txt, startKb),td);
@@ -7436,7 +7436,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		}
 		else {
 			txt = `Woohoo! We will proceed with your registration as an NREA Member. `;
-			txt = txt + `Please type your name in <Last Name, First Name, MI> format. Example: Reyes, Jose, C`;
+			txt = txt + `Please type your name in <Last Name, First Name> format. Example: Reyes, Jose`;
 			td.statusid = "nameRegistration";
 			response.send(new TextMessage(txt, startKb),td);
 		}
@@ -7450,16 +7450,16 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 		if(text.includes(",")){
 			let nameSplit = text.split(",");
 			console.log(nameSplit.length);
-			if(nameSplit[0].length > 1 && nameSplit[1].length > 1 && nameSplit.length == 3 ){
+			if(nameSplit[0].length > 1 && nameSplit[1].length > 1 && nameSplit.length == 2 ){
 				td.statusid = "mobileRegistration";
-				td.nameReg = nameSplit[0].trim() + ", " + nameSplit[1].trim() + " " + nameSplit[2].trim()
+				td.nameReg = nameSplit[0].trim() + ", " + nameSplit[1].trim() 
 				response.send(new TextMessage('Please input your mobile number beginning with 09, e.g., 09XXXXXXXXX.',startKb),td)
 				
 			} else {
-				response.send(new TextMessage('You have input an incorrect value for your Name. Please try to follow our format of <Last Name, First Name, MI>.',startKb),td)	
+				response.send(new TextMessage('You have input an incorrect value for your Name. Please try to follow our format of <Last Name, First Name>.',startKb),td)	
 			}
 		} else {
-			response.send(new TextMessage('You have input an incorrect value for your Name. Please try to follow our format of <Last Name, First Name, MI>.',startKb),td)
+			response.send(new TextMessage('You have input an incorrect value for your Name. Please try to follow our format of <Last Name, First Name>.',startKb),td)
 		}
 		
 		
@@ -7620,7 +7620,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// 	} else {
 	// 		td.statusid = "hlurbSupervisorRegistration";
 	// 		td.hlurbExp = text;
-	// 		response.send(new TextMessage('Who is your supervising registered broker? Please type his name in <Last Name, First Name, MI> format.',startKb),td);
+	// 		response.send(new TextMessage('Who is your supervising registered broker? Please type his name in <Last Name, First Name> format.',startKb),td);
 	// 	}	
 	// }
 	// //DHSUD Accreditation Supervisor's PRC License(for Brokers with DHSUD)
@@ -7633,10 +7633,10 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	// 			td.hlurbSupervisor = nameSplit[0].trim() + ", " + nameSplit[1].trim() + " " + nameSplit[2].trim();
 	// 			response.send(new TextMessage(`Please input your supervising broker's PRC license number.`,startKb),td);
 	// 		} else {
-	// 			response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)	
+	// 			response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name>.`,startKb),td)	
 	// 		}
 	// 	} else {
-	// 		response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name, MI>.`,startKb),td)
+	// 		response.send(new TextMessage(`You have input an incorrect value for your supervisor's name. Please try to follow our format of <Last Name, First Name>.`,startKb),td)
 	// 	}
 	// }
 	//DHSUD Accreditation Image(for Brokers with DHSUD)
@@ -10416,7 +10416,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, (message, response) => {
 	else if(text && text != "https://proptechph.com/broadcast_preference.html" && userid == response.userProfile.id && statusid == "setBroadcastPreference"){
 		let nameSplit = text.split(";");
 		
-		if(nameSplit.length == 3){
+		if(nameSplit.length == 2){
 			updateBroadcastPreference(nameSplit,message,response,td);
 		}
 	}
